@@ -14,9 +14,9 @@ if "messages" not in st.session_state:
 # Exibir mensagens antigas
 for message in st.session_state["messages"]:
     if message["role"] == "user":
-        st.text_area("Você", message["text"], key=message["id"], height=40)
+        st.text_area("Você", message["text"], key=message["id"])
     else:
-        st.text_area("Bot", message["text"], key=message["id"], height=40)
+        st.text_area("Bot", message["text"], key=message["id"])
 
 # Entrada do usuário
 user_input = st.text_input("Digite sua mensagem:")

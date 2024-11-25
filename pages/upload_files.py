@@ -1,6 +1,15 @@
 import streamlit as st
 import os
 
+from langchain_openai import OpenAIEmbeddings
+from langchain_pinecone import PineconeVectorStore
+
+embedding_size = 3072
+embedding_model = 'text-embedding-3-large'
+embeddings = OpenAIEmbeddings(model=embedding_model)
+
+
+
 # Verifica se o usuário está autenticado
 if "authenticated" not in st.session_state or not st.session_state["authenticated"]:
     st.error("Você precisa fazer login para acessar esta página.")
