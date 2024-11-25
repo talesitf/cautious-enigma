@@ -6,6 +6,5 @@ langchain-openai
 pypdf
 pinecone
 langchain-pinecone
-pinecone-client
-pinecone-text
+pinecone-notebooks
 boto3
