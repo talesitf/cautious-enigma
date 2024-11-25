@@ -31,5 +31,5 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd /home/ec2-user/streamlit_app
-            git pull origin ${{ github.ref_name }}
+            git pull origin dev
             nohup streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
