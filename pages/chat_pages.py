@@ -26,4 +26,4 @@ if st.button("Enviar"):
         # Resposta fictícia do bot
         bot_response = f"Você disse: {user_input}"
         st.session_state["messages"].append({"role": "bot", "text": bot_response, "id": len(st.session_state["messages"]) + 1})
-        st.rerun()
+
