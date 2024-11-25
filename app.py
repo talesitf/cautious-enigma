@@ -35,10 +35,28 @@ def authenticate_user_from_dynamodb(username, password):
         st.error("Unable to connect to DynamoDB. Check IAM permissions.")
         return False
 
+# Function for restricted access
+def restricted_functionality():
+    st.subheader("Restricted Access")
+    st.write("You are now accessing a restricted feature because you are logged in.")
+
 # Streamlit app for login and signup
 def main():
     st.title("Login or Signup with DynamoDB")
 
+    # Initialize session state for authentication
+    if "authenticated" not in st.session_state:
+        st.session_state["authenticated"] = False
+        st.session_state["username"] = None
+
+    # If logged in, show logout button and restricted functionality
+    if st.session_state["authenticated"]:
+        st.sidebar.button("Logout", on_click=lambda: logout())
+        st.success(f"Welcome {st.session_state['username']}!")
+        restricted_functionality()
+        return
+
+    # Authentication form
     choice = st.radio("Select an option", ["Login", "Signup"])
 
     if choice == "Signup":
@@ -57,9 +75,18 @@ def main():
         password = st.text_input("Password", type="password")
         if st.button("Login"):
             if authenticate_user_from_dynamodb(username, password):
+                st.session_state["authenticated"] = True
+                st.session_state["username"] = username
                 st.success(f"Welcome {username}!")
+                st.experimental_rerun()
             else:
                 st.error("Invalid username or password.")
+
+# Function to handle logout
+def logout():
+    st.session_state["authenticated"] = False
+    st.session_state["username"] = None
+    st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
