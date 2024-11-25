@@ -78,7 +78,7 @@ def main():
                 st.session_state["authenticated"] = True
                 st.session_state["username"] = username
                 st.success(f"Welcome {username}!")
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Invalid username or password.")
 
@@ -86,7 +86,7 @@ def main():
 def logout():
     st.session_state["authenticated"] = False
     st.session_state["username"] = None
-    st.experimental_rerun()
+    st.rerun()
 
 if __name__ == "__main__":
     main()
