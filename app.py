@@ -34,7 +34,7 @@ def main():
             st.session_state["username"] = None
 
     if st.session_state["authenticated"]:
-        st.success(f"Bem-vindo, {st.session_state['username']}!")
+        st.success(f"Bem-vindes, {st.session_state['username']}!")
         st.sidebar.success("Use o menu lateral para acessar as funcionalidades.")
         return
 
