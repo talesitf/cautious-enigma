@@ -32,5 +32,5 @@ jobs:
           script: |
             cd /home/ec2-user/streamlit_app
             sudo git pull origin dev
-            pip install -r -U requirements.txt
+            pip install -r requirements.txt
             nohup streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
