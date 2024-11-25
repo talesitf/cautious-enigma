@@ -32,7 +32,6 @@ def main():
         if st.sidebar.button("Logout"):
             st.session_state["authenticated"] = False
             st.session_state["username"] = None
-            st.rerun()
 
     if st.session_state["authenticated"]:
         st.success(f"Bem-vindo, {st.session_state['username']}!")
@@ -64,7 +63,6 @@ def main():
                 st.session_state["authenticated"] = True
                 st.session_state["username"] = username
                 st.success("Login realizado com sucesso!")
-                st.rerun()
             else:
                 st.error("Usuário ou senha inválidos.")
 
