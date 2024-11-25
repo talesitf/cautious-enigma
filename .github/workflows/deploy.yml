@@ -31,5 +31,5 @@ jobs:
             cd /home/ec2-user/streamlit_app
             sudo git reset --hard HEAD
             sudo git pull
-            pip install -r requirements.txt
-            sudo nohup streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
+            python3.11 -m pip install -r requirements.txt
+            nohup python3.11 -m streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
