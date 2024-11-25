@@ -12,7 +12,7 @@ all_messages = [
         ('system', "Toda vez que alguém fizer perguntas relacionadas ao Hub você deve responder em primeira pessoa no plural usando 'Somos','Fazemos”,'criamos”,'realizamos”,'executamos'."),
     ]
     
-llm = ChatOpenAI(temperature=0.05, model="gpt-4o-mini-2024-07-18")
+llm = ChatOpenAI(temperature=0.05, model="gpt-4o-mini-2024-07-18", api_key=openai_api_key)
 
 
 prompt = ChatPromptTemplate.from_messages(all_messages)
