@@ -1,9 +1,7 @@
-name: CI/CD Pipeline for Streamlit
-
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   deploy:
@@ -26,7 +24,7 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.EC2_PUBLIC_IP }}
+          host: ${{ secrets.PROD_EC2_PUBLIC_IP }}
           username: ec2-user
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
