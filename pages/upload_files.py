@@ -11,6 +11,7 @@ UPLOAD_FOLDER = "uploaded_files"
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
+
 # Página de upload
 st.title("Upload e Listagem de Arquivos")
 
