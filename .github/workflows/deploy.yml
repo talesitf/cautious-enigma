@@ -31,7 +31,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd /home/ec2-user/streamlit_app
-            sudo git checkout dev
+            sudo git reset --hard HEAD
             sudo git pull
             pip install -r requirements.txt
             sudo nohup streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
