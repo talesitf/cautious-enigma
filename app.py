@@ -32,9 +32,10 @@ def main():
         if st.sidebar.button("Logout"):
             st.session_state["authenticated"] = False
             st.session_state["username"] = None
+            st.rerun()
 
     if st.session_state["authenticated"]:
-        st.success(f"Bem-vindes, {st.session_state['username']}!")
+        st.success(f"Bem-vindo, {st.session_state['username']}!")
         st.sidebar.success("Use o menu lateral para acessar as funcionalidades.")
         return
 
@@ -54,8 +55,6 @@ def main():
                 save_users(users)
                 st.success("Usuário cadastrado com sucesso!")
 
-
-
     elif choice == "Login":
         st.subheader("Fazer Login")
         username = st.text_input("Nome de Usuário")
@@ -65,6 +64,7 @@ def main():
                 st.session_state["authenticated"] = True
                 st.session_state["username"] = username
                 st.success("Login realizado com sucesso!")
+                st.rerun()
             else:
                 st.error("Usuário ou senha inválidos.")
 
