@@ -54,6 +54,8 @@ def main():
                 save_users(users)
                 st.success("Usuário cadastrado com sucesso!")
 
+
+
     elif choice == "Login":
         st.subheader("Fazer Login")
         username = st.text_input("Nome de Usuário")
