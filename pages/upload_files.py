@@ -8,7 +8,8 @@ from pinecone import Pinecone, ServerlessSpec
 
 embedding_size = 3072
 embedding_model = 'text-embedding-3-large'
-embeddings = OpenAIEmbeddings(model=embedding_model)
+openai_api_key = os.getenv("OPENAI_API_KEY")
+embeddings = OpenAIEmbeddings(model=embedding_model, api_key=openai_api_key)
 
 pinecone_api_key = os.getenv("PINECONE_API_KEY")
 pinecone_index_name = "text-embeddings"
