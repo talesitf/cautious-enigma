@@ -1,14 +1,37 @@
 import streamlit as st
 import os
+import time
 
 from langchain_openai import OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
+from pinecone import Pinecone, ServerlessSpec
 
 embedding_size = 3072
 embedding_model = 'text-embedding-3-large'
 embeddings = OpenAIEmbeddings(model=embedding_model)
 
+pinecone_api_key = os.getenv("PINECONE_API_KEY")
+pinecone_index_name = "text-embeddings"
 
+pc = Pinecone(api_key=pinecone_api_key)
+
+index_name = "test-index"  # change if desired
+
+existing_indexes = [index_info["name"] for index_info in pc.list_indexes()]
+
+if index_name not in existing_indexes:
+    pc.create_index(
+        name=index_name,
+        dimension=3072,
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1"),
+    )
+    while not pc.describe_index(index_name).status["ready"]:
+        time.sleep(1)
+
+index = pc.Index(index_name)
+
+vector_store = PineconeVectorStore(index=index, embedding=embeddings)
 
 # Verifica se o usuário está autenticado
 if "authenticated" not in st.session_state or not st.session_state["authenticated"]:
