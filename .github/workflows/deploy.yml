@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
   deploy:
@@ -24,12 +24,12 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PROD_EC2_PUBLIC_IP }}
+          host: ${{ secrets.TEST_EC2_PUBLIC_IP }}
           username: ec2-user
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd /home/ec2-user/streamlit_app
             sudo git reset --hard HEAD
             sudo git pull
-            pip install -r requirements.txt
-            nohup streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
+            python3.11 -m pip install -r requirements.txt
+            nohup python3.11 -m streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
