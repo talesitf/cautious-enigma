@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - test
+      - main
 
 jobs:
   deploy:
@@ -31,5 +31,7 @@ jobs:
             cd /home/ec2-user/streamlit_app
             sudo git reset --hard HEAD
             sudo git pull
+
             python3.11 -m pip install -r requirements.txt
             nohup python3.11 -m streamlit run app.py --server.port 8501 --server.address 0.0.0.0 > streamlit.log 2>&1 &
+

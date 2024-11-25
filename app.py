@@ -2,8 +2,9 @@ import boto3
 import streamlit as st
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 
+
 # DynamoDB Table Name
-DYNAMODB_TABLE = "test_streamlit_table"
+DYNAMODB_TABLE = "prod_streamlit_table"
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource("dynamodb", region_name="us-east-2")  # Change the region if needed
@@ -51,9 +52,11 @@ def main():
 
     # If logged in, show logout button and restricted functionality
     if st.session_state["authenticated"]:
+
         st.sidebar.button("Logout", on_click=lambda: logout())
         st.success(f"Welcome {st.session_state['username']}!")
         restricted_functionality()
+
         return
 
     # Authentication form
